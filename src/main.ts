@@ -9,8 +9,9 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    height: 600,
-    width: 800,
+    height: 750,
+    width: 1200,
+    webPreferences: { nodeIntegration: true }
   });
 
   // and load the index.html of the app.
