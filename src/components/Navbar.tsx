@@ -13,7 +13,7 @@ import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './NavbarItems';
+import { mainListItems } from './NavbarItems';
 
 const drawerWidth = 240;
 
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar: React.FC<{}> = () => {
     const classes = useStyles();
-    const [open, setOpen] = React.useState<boolean>(true);
+    const [open, setOpen] = React.useState<boolean>(false);
     const handleDrawerOpen = () => {
       setOpen(true);
     };
@@ -129,8 +129,6 @@ const Navbar: React.FC<{}> = () => {
         </div>
         <Divider />
         <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
       </Drawer>
       </div>
     )

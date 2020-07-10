@@ -2,79 +2,44 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import Tooltip from '@material-ui/core/Tooltip';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import LabelIcon from '@material-ui/icons/Label';
 import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { Link } from 'react-router-dom';
 
+interface Ilink {
+  path: string;
+  name: string;
+  icon: any;
+}
+
+const linkStyles = {
+  textDecoration: 'none',
+  color: 'black'
+};
+
+const links: Ilink[] = [
+  {path: '/', name:'Dashboard', icon: <DashboardIcon /> },
+  {path: '/product', name:'Product', icon: <ShoppingCartIcon /> },
+  {path: '/category', name:'Category', icon: <LabelIcon/>},
+  {path: '/supplier', name: 'Supplier', icon: <PeopleIcon /> },
+  {path: '/registries', name: 'Registries', icon: <AssignmentIcon />}
+];
+
 export const mainListItems = (
   <div>
-    <Link to="/">
+    {links.map((link: Ilink) => (
+     <Link to={link.path} style={linkStyles}>
        <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+       <Tooltip title={link.name.toLocaleUpperCase()}>
+         <ListItemIcon>{link.icon}</ListItemIcon>
+       </Tooltip>
+      <ListItemText primary={link.name} />
     </ListItem> 
-    </Link>
-
-    <Link to="/product">
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Product" />
-    </ListItem>    
-    </Link>
-
-    <Link to="/category">
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Category" />
-    </ListItem>    
-    </Link>
-
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItem>
-  </div>
-);
-
-export const secondaryListItems = (
-  <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItem>
+    </Link>     
+    ))}
   </div>
 );
