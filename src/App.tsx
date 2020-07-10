@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function App() {
+const App: React.FC = () => {
   const classes = useStyles();
 
   return (
@@ -56,3 +56,5 @@ export default function App() {
 const product: React.FC = () => <h1>product</h1>;
 const category: React.FC = () => <h1>category klk</h1>;
 const dashboard: React.FC = () => <h1>dashboard</h1>;
+
+export default App;

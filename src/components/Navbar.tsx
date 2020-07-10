@@ -77,9 +77,13 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function Navbar() {
+// interface Props {
+//    name: string;
+// }
+
+const Navbar: React.FC<{}> = () => {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState<boolean>(true);
     const handleDrawerOpen = () => {
       setOpen(true);
     };
