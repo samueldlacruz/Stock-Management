@@ -9,19 +9,10 @@ import LabelIcon from '@material-ui/icons/Label';
 import PeopleIcon from '@material-ui/icons/People';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { Link } from 'react-router-dom';
+import ItemLinkModel from '../../interfaces/ItemLinkModel';
+import useStyles from './styles';
 
-interface Ilink {
-  path: string;
-  name: string;
-  icon: any;
-}
-
-const linkStyles = {
-  textDecoration: 'none',
-  color: 'black'
-};
-
-const links: Ilink[] = [
+const links: ItemLinkModel[] = [
   {path: '/', name:'Dashboard', icon: <DashboardIcon /> },
   {path: '/product', name:'Product', icon: <ShoppingCartIcon /> },
   {path: '/category', name:'Category', icon: <LabelIcon/>},
@@ -29,10 +20,12 @@ const links: Ilink[] = [
   {path: '/registries', name: 'Registries', icon: <AssignmentIcon />}
 ];
 
+const classes = useStyles();
+
 export const mainListItems = (
   <div>
-    {links.map((link: Ilink) => (
-     <Link to={link.path} style={linkStyles}>
+    {links.map((link: ItemLinkModel) => (
+     <Link key={link.name} to={link.path} className={classes.itemLink}>
        <ListItem button>
        <Tooltip title={link.name.toLocaleUpperCase()}>
          <ListItemIcon>{link.icon}</ListItemIcon>

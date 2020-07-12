@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import { MemoryRouter as Router, Route, Switch }from 'react-router-dom';
 import Navbar from './components/Navbar';
+import CategoryPage from './views/CategoryPage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +39,7 @@ const App: React.FC = () => {
           <Switch>
             <Route path="/" exact component={dashboard}/>
             <Route path="/product" component={product}/>
-            <Route path="/category" component={category}/>
+            <Route path="/category" component={CategoryPage}/>
           </Switch>
         </Container>
       </main>
@@ -48,7 +49,7 @@ const App: React.FC = () => {
 }
 
 const product: React.FC = () => <h1>product</h1>;
-const category: React.FC = () => <h1>category klk</h1>;
 const dashboard: React.FC = () => <h1>dashboard</h1>;
+
 
 export default App;
