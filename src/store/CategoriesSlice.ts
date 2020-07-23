@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CategoryModel} from '../interfaces/CategoryModel';
 import { AppThunk } from './store';
-import { getCategories, addCategory } from '../api';
+import { getCategories, addCategory, deleteCategory } from '../services/categories';
 
 const initialState: { categories: CategoryModel[]; isLaoding: boolean } = {
   categories: [],
@@ -18,18 +18,18 @@ const slice = createSlice({
         setIsLoading: (state, action: PayloadAction<boolean>) => {
           state.isLaoding = action.payload;
         },
-        saveCategory: (state, action: PayloadAction<CategoryModel>) => {
+        save: (state, action: PayloadAction<CategoryModel>) => {
           state.categories.push(action.payload);
         }, 
-        removeCategory: (state, action: PayloadAction<string>) => {
-         state.categories.map(category => category.name != action.payload)
+        remove: (state, action: PayloadAction<number | undefined>) => {
+        state.categories = state.categories.filter(category => category.id !== action.payload)
         }, 
     }
 })
 
 export default slice.reducer;
 
-const { setCategories, setIsLoading, saveCategory, removeCategory } = slice.actions;
+const { setCategories, setIsLoading, save, remove } = slice.actions;
 
 export const fecthCategories = (): AppThunk => async (dispatch) => {
   const categories = await getCategories();
@@ -39,11 +39,11 @@ export const fecthCategories = (): AppThunk => async (dispatch) => {
 
 export const submitCategory = (name: string, description: string): AppThunk => async (dispatch) => {
   const category = { name, description };
-  dispatch(saveCategory(category));
-  addCategory();
+  dispatch(save(category));
+  addCategory(category);
 }
 
-export const deleteCategory = (name: string): AppThunk => async (dispatch) => {
-  dispatch(removeCategory(name));
-  console.log(name);
+export const removeCategory = (id: number | undefined): AppThunk => async (dispatch) => {
+  dispatch(remove(id));
+  deleteCategory(id);
 }

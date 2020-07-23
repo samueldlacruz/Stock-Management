@@ -5,8 +5,8 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
-    form:{
-      width: '100%'
+    form: {
+     width: '100%'
     },
     paper: {
       width: '50%',

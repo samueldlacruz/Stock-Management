@@ -8,32 +8,35 @@ import {
   IconButton } from '@material-ui/core';
 
 import {
- Label,
+ People,
  EditOutlined,
+ UpdateOutlined,
  DeleteOutlined } from '@material-ui/icons/';
 
-import { CategoryModel } from '../../interfaces/CategoryModel';
-import { useDispatch } from 'react-redux';
+import { SupplierModel } from '../../interfaces/SupplierModel';
 import  useStyles from './styles';
-import { removeCategory } from '../../store/CategoriesSlice';
 
-const CategoryCard: React.FC<CategoryModel> = (props: CategoryModel) => {
+
+const SupplierCard: React.FC<SupplierModel> = (props: SupplierModel) => {
     const classes = useStyles();
-
-    const dispatch = useDispatch();
 
     return (
         <Paper elevation={2} className={classes.paper}> 
         <ListItem className={classes.listItem}>
             <ListItemIcon>
-            <Label />
+            <People />
             </ListItemIcon>
-            <ListItemText primary={props.name} secondary={props.description} />
+            <ListItemText 
+            primary={props.name} 
+            secondary={`tel: ${props.phone} email: ${props.email}`} />
             <ListItemSecondaryAction>
             <IconButton edge="end" aria-label="edit ">
                 <EditOutlined />
             </IconButton>
-            <IconButton edge="end" onClick={() => dispatch(removeCategory(props.id))} className={classes.deleteIcon} aria-label="delete">
+            <IconButton edge="end" className={classes.updateIcon} aria-label="update">
+                <UpdateOutlined />
+            </IconButton>
+            <IconButton edge="end" className={classes.deleteIcon} aria-label="delete">
                 <DeleteOutlined />
             </IconButton>
             </ListItemSecondaryAction>
@@ -43,4 +46,4 @@ const CategoryCard: React.FC<CategoryModel> = (props: CategoryModel) => {
 }
 
 
-export default CategoryCard;
+export default SupplierCard;

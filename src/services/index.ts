@@ -1,4 +1,5 @@
 import { CategoryModel } from '../interfaces/CategoryModel';
+import { SupplierModel } from '../interfaces/SupplierModel';
 
 const categories: CategoryModel[] = [
     {name: 'candiesKlk', description: 'description candies'},
@@ -11,3 +12,10 @@ export const getCategories = async (): Promise<CategoryModel[]> => ( categories 
 export const addCategory = () => {
     console.log('klk se agrego una nueva categoria');
 };
+
+const suppliers: SupplierModel[] = [
+    {name: 'ISM (Kola Real)', phone:'8297156160', email: 'kolareal@rr.com'},
+    {name: 'Frito Lays', phone:'8097054160', email: 'fritolay@rr.com'}
+]
+
+export const getSuppliers = async (): Promise<SupplierModel[]> => ( suppliers );

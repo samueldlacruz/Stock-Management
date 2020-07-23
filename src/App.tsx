@@ -5,6 +5,8 @@ import Container from '@material-ui/core/Container';
 import { MemoryRouter as Router, Route, Switch }from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import CategoryPage from './views/CategoryPage';
+import SupplierPage from './views/SupplierPage';
+import ProductPage from './views/ProductPage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,8 +40,9 @@ const App: React.FC = () => {
         <Container maxWidth="lg" className={classes.container}>
           <Switch>
             <Route path="/" exact component={dashboard}/>
-            <Route path="/product" component={product}/>
+            <Route path="/product" component={ProductPage}/>
             <Route path="/category" component={CategoryPage}/>
+            <Route path="/supplier" component={SupplierPage}/>
           </Switch>
         </Container>
       </main>
@@ -48,7 +51,6 @@ const App: React.FC = () => {
   );
 }
 
-const product: React.FC = () => <h1>product</h1>;
 const dashboard: React.FC = () => <h1>dashboard</h1>;
 
 export default App;
