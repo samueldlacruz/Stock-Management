@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import  ListContainer from '../../components/List';
 import Typography from '@material-ui/core/Typography';
-import { SupplierModel } from './SupplierModel';
+import { SupplierModel } from './Supplier.type';
 import SupplierCard from './SupplierCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../reducers';

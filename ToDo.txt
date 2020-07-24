@@ -1,0 +1,21 @@
+1) hacer la lista de employees *
+2) chequear todas las listas y los card *
+3) agregar funcionalidad de guardar employees
+4) agregar la funcinabilidad de guardar suppliers
+
+--CUANDO TERMINE ESO VOY A TENER EL CREATE Y EL READ DE ESOS TRES MODULOS 
+(CATEGORIES,
+ SUPPLIERS,
+ EMPLOYEES
+)
+
+--LUEGO
+1) hacer la funcinabilidad de update de los tres modulos
+2) hacer un modal para los update 
+3) realizar los updates
+4) hacer la funcinabilidad de delete de los tres modulos
+5) crear modal de dialogo para confirmar eliminar
+
+--ULTIMO
+1) refatorizar los componentes repetitivos
+2) probar el CRUD de c/u de los modulos

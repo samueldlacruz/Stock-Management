@@ -8,32 +8,31 @@ import {
   IconButton } from '@material-ui/core';
 
 import {
- Store,
+ People,
  EditOutlined,
- UpdateOutlined,
  DeleteOutlined } from '@material-ui/icons/';
 
-import { SupplierModel } from './Supplier.type';
-import  useStyles from './supplierCard.styles';
+import { EmployeeModal } from './Employee.type'
+import  useStyles from './employeeCard.styles';
 
 
-const SupplierCard: React.FC<SupplierModel> = (props: SupplierModel) => {
+const EmployeeCard: React.FC<EmployeeModal> = (props: EmployeeModal) => {
     const classes = useStyles();
 
     return (
         <Paper elevation={2} className={classes.paper}> 
         <ListItem className={classes.listItem}>
             <ListItemIcon>
-            <Store />
+            <People />
             </ListItemIcon>
             <ListItemText 
-            primary={props.name} 
+            primary={`${props.name} ${props.lastname}`} 
             secondary={`tel: ${props.phone} email: ${props.email}`} />
             <ListItemSecondaryAction>
             <IconButton edge="end" className={classes.updateIcon} aria-label="edit ">
                 <EditOutlined />
             </IconButton>
-            <IconButton edge="end" className={classes.deleteIcon} aria-label="delete">
+            <IconButton edge="end" onClick={() => console.log(props.id)} className={classes.deleteIcon} aria-label="delete">
                 <DeleteOutlined />
             </IconButton>
             </ListItemSecondaryAction>
@@ -43,4 +42,4 @@ const SupplierCard: React.FC<SupplierModel> = (props: SupplierModel) => {
 }
 
 
-export default SupplierCard;
+export default EmployeeCard;

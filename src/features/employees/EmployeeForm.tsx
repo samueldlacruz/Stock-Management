@@ -8,29 +8,31 @@ import Box from '@material-ui/core/Box';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup';
-import useStyles from './supplierForm.styles';
-import { SupplierModel } from './Supplier.type';
+import useStyles from './employeeForm.styles';
+import { EmployeeModal } from './Employee.type';
 
-const SupplierEntrySchema = yup.object().shape({
+const EmployeeEntrySchema = yup.object().shape({
  name: yup.string().required('this is required'),
  phone: yup.string().max(55).required('this is required'),
  email: yup.string().max(55).required('this is required'),
+ lastname: yup.string().required('this is required')
 });
 
-const SupplierForm: React.FC = () => {
+const EmployeeForm: React.FC = () => {
 
     const classes = useStyles();
 
-    const { register, handleSubmit, reset } = useForm<SupplierModel>({
-      resolver: yupResolver(SupplierEntrySchema)
+    const { register, handleSubmit, reset, errors } = useForm<EmployeeModal>({
+      resolver: yupResolver(EmployeeEntrySchema)
     });
 
-    const onSubmit = (data: SupplierModel): void => {
+    const onSubmit = (data: EmployeeModal): void => {
       console.log(data);
       reset({
         name: '',
-        phone: '',
-        email: ''
+        lastname: '',
+        email: '',
+        phone: ''
       });
     };
 
@@ -41,11 +43,11 @@ const SupplierForm: React.FC = () => {
        alignItems="center">
         <Paper className={classes.paper} variant="outlined">
             <Typography variant="subtitle1" gutterBottom>
-                create supplier
+                create employee
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
              <Grid container className={classes.root} spacing={2}>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                     <TextField
                     inputRef={register}
                     id="name"
@@ -53,18 +55,30 @@ const SupplierForm: React.FC = () => {
                     label="name"
                     variant="outlined"
                     size="small"
-                    fullWidth
+                    error={ errors.name ? true : false }
                     />
                 </Grid>
                 <Grid item xs={6}>
                     <TextField
                     inputRef={register}
+                    id="lastname"
+                    name="lastname"
+                    label="lastname"
+                    variant="outlined"
+                    size="small"
+                    error={ errors.lastname ? true : false }
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <TextField
+                    inputRef={register}
+                    type="tel"
                     id="phone"
                     name="phone"
                     label="phone"
-                    type="tell"
                     variant="outlined"
                     size="small"
+                    error={ errors.phone ? true : false }
                     />                
                 </Grid>
                 <Grid item xs={6}>
@@ -76,11 +90,12 @@ const SupplierForm: React.FC = () => {
                     type="email"
                     variant="outlined"
                     size="small"
+                    error={ errors.email ? true : false }
                     />                
                 </Grid>
                 <Grid item xs={12}>
                     <Button type="submit" variant="contained" fullWidth color="primary">
-                      CREATE SUPPLIER
+                      CREATE EMPLOYEE
                     </Button>                    
                 </Grid>
               </Grid>
@@ -90,4 +105,4 @@ const SupplierForm: React.FC = () => {
     )
 }
 
-export default SupplierForm;
+export default EmployeeForm;

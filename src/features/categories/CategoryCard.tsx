@@ -30,7 +30,7 @@ const CategoryCard: React.FC<CategoryModel> = (props: CategoryModel) => {
             </ListItemIcon>
             <ListItemText primary={props.name} secondary={props.description} />
             <ListItemSecondaryAction>
-            <IconButton edge="end" aria-label="edit ">
+            <IconButton edge="end" className={classes.updateIcon} aria-label="edit ">
                 <EditOutlined />
             </IconButton>
             <IconButton edge="end" onClick={() => dispatch(removeCategory(props.id))} className={classes.deleteIcon} aria-label="delete">
