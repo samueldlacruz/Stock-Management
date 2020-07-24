@@ -13,8 +13,8 @@ import {
  UpdateOutlined,
  DeleteOutlined } from '@material-ui/icons/';
 
-import { SupplierModel } from '../../interfaces/SupplierModel';
-import  useStyles from './styles';
+import { SupplierModel } from './SupplierModel';
+import  useStyles from './supplierCard.styles';
 
 
 const SupplierCard: React.FC<SupplierModel> = (props: SupplierModel) => {

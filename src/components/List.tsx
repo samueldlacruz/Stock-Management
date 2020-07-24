@@ -2,11 +2,19 @@ import React from 'react';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Box from '@material-ui/core/Box';
-import useStyles from './styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 interface ListProps {
   title: string;
 }
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      marginTop: theme.spacing(3),
+    },
+  }),
+);
 
 const ListContainer: React.FC<ListProps> = (props) => {
   const classes = useStyles();

@@ -4,8 +4,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
-import App from './App';
+import { store } from './reducers';
+import App from './components/App';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

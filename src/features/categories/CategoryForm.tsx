@@ -5,33 +5,50 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import Snackbar from '@material-ui/core/Snackbar';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup';
-import useStyles from './styles';
-import { SupplierModel } from '../../interfaces/SupplierModel';
+import { useDispatch } from 'react-redux';
+import Notify from '../../components/Notify';
+import { submitCategory } from './CategoriesSlice';
+import { CategoryModel } from './CategoryModel';
+import useStyles from './categoryForm.styles';
 
-const SupplierEntrySchema = yup.object().shape({
+const CategoryEntrySchema = yup.object().shape({
  name: yup.string().required('this is required'),
- phone: yup.string().max(55).required('this is required'),
- email: yup.string().max(55).required('this is required'),
+ description: yup.string().max(55).required('this is required'),
 });
 
-const SupplierForm: React.FC = () => {
-
+const CategoryForm: React.FC = () => {
+    const dispatch = useDispatch();
+   
     const classes = useStyles();
 
-    const { register, handleSubmit, reset } = useForm<SupplierModel>({
-      resolver: yupResolver(SupplierEntrySchema)
+    const { register, handleSubmit, reset, errors } = useForm<CategoryModel>({
+      resolver: yupResolver(CategoryEntrySchema)
     });
 
-    const onSubmit = (data: SupplierModel): void => {
-      console.log(data);
+    const [openNotify, setOpenNotify] = React.useState(false);
+
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpenNotify(false);
+    };
+
+    const onSubmit = (data: CategoryModel): void => {
+      dispatch(submitCategory(data.name, data.description));
+
+      setOpenNotify(true);
+
       reset({
         name: '',
-        phone: '',
-        email: ''
+        description: ''
       });
+
     };
 
     return (
@@ -41,11 +58,11 @@ const SupplierForm: React.FC = () => {
        alignItems="center">
         <Paper className={classes.paper} variant="outlined">
             <Typography variant="subtitle1" gutterBottom>
-                create supplier
+                create category
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
              <Grid container className={classes.root} spacing={2}>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                     <TextField
                     inputRef={register}
                     id="name"
@@ -53,41 +70,36 @@ const SupplierForm: React.FC = () => {
                     label="name"
                     variant="outlined"
                     size="small"
-                    fullWidth
+                    error={ errors.name ? true : false }
                     />
                 </Grid>
                 <Grid item xs={6}>
                     <TextField
                     inputRef={register}
-                    id="phone"
-                    name="phone"
-                    label="phone"
-                    type="tell"
+                    id="description"
+                    name="description"
+                    label="description"
                     variant="outlined"
                     size="small"
-                    />                
-                </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                    inputRef={register}
-                    id="email"
-                    name="email"
-                    label="email"
-                    type="email"
-                    variant="outlined"
-                    size="small"
+                    error={ errors.description ? true : false }
                     />                
                 </Grid>
                 <Grid item xs={12}>
                     <Button type="submit" variant="contained" fullWidth color="primary">
-                      CREATE SUPPLIER
+                      CREATE CATEGORY
                     </Button>                    
                 </Grid>
               </Grid>
             </form>
         </Paper>
+        <Snackbar open={openNotify} autoHideDuration={6000} onClose={handleClose}>
+          <Notify 
+          title="nueva categoria" 
+          content="se agrego una categoria"
+          type="success"/>
+        </Snackbar>
      </Box>
     )
 }
 
-export default SupplierForm;
+export default CategoryForm;

@@ -9,7 +9,7 @@ import LabelIcon from '@material-ui/icons/Label';
 import PeopleIcon from '@material-ui/icons/People';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { Link } from 'react-router-dom';
-import { ItemLinkModal } from '../../interfaces/ItemLinkModel';
+import { ItemLinkModal } from './ItemLinkModel';
 
 const linkStyles = {
   textDecoration: 'none',

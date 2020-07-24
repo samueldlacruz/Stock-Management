@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { ListContainer } from '../shared/';
+import  ListContainer from '../../components/List';
 import Typography from '@material-ui/core/Typography';
-import { SupplierModel } from '../../interfaces/SupplierModel';
-import SupplierCard from '../SupplierCard';
+import { SupplierModel } from './SupplierModel';
+import SupplierCard from './SupplierCard';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/store';
-import { fecthSuppliers } from '../../store/SuppliersSlice';
+import { RootState } from '../../reducers';
+import { fecthSuppliers } from './SuppliersSlice';
 
 
 const SuppliersList = () => {

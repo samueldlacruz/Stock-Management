@@ -12,10 +12,10 @@ import {
  EditOutlined,
  DeleteOutlined } from '@material-ui/icons/';
 
-import { CategoryModel } from '../../interfaces/CategoryModel';
+import { CategoryModel } from './CategoryModel';
 import { useDispatch } from 'react-redux';
-import  useStyles from './styles';
-import { removeCategory } from '../../store/CategoriesSlice';
+import  useStyles from './categoryCard.styles';
+import { removeCategory } from './CategoriesSlice';
 
 const CategoryCard: React.FC<CategoryModel> = (props: CategoryModel) => {
     const classes = useStyles();

@@ -1,5 +1,5 @@
-import { CategoryModel } from '../interfaces/CategoryModel';
-import { SupplierModel } from '../interfaces/SupplierModel';
+import { CategoryModel } from '../features/categories/CategoryModel';
+import { SupplierModel } from '../features/suppliers/SupplierModel';
 
 const categories: CategoryModel[] = [
     {name: 'candiesKlk', description: 'description candies'},

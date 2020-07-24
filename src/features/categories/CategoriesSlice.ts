@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CategoryModel} from '../interfaces/CategoryModel';
-import { AppThunk } from './store';
-import { getCategories, addCategory, deleteCategory } from '../services/categories';
+import { CategoryModel} from './CategoryModel';
+import { AppThunk } from '../../reducers';
+import { getCategories, addCategory, deleteCategory } from '../../api/categories';
 
 const initialState: { categories: CategoryModel[]; isLaoding: boolean } = {
   categories: [],

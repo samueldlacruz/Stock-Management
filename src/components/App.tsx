@@ -3,10 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import { MemoryRouter as Router, Route, Switch }from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import CategoryPage from './views/CategoryPage';
-import SupplierPage from './views/SupplierPage';
-import ProductPage from './views/ProductPage';
+import Navbar from './Navbar';
+import CategoryPage from '../screens/CategoryPage';
+import SupplierPage from '../screens/SupplierPage';
+import ProductPage from '../screens/ProductPage';
 
 const useStyles = makeStyles((theme) => ({
   root: {

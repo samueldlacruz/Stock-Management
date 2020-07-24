@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SupplierModel } from '../interfaces/SupplierModel';
-import { AppThunk } from './store';
-import { getSuppliers } from '../services';
+import { SupplierModel } from './SupplierModel';
+import { AppThunk } from '../../reducers';
+import { getSuppliers } from '../../api/index';
 
 const initialState: { suppliers: SupplierModel[]; isLaoding: boolean } = {
   suppliers: [],

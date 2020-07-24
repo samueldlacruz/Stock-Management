@@ -4,8 +4,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import PeopleIcon from '@material-ui/icons/People';
 import useStyles from './styles';
-import SupplierForm from '../components/SupplierForm';
-import SuppliersList from '../components/SuppliersList';
+import SupplierForm from '../features/suppliers/SupplierForm';
+import SuppliersList from '../features/suppliers/SupplierList';
 
 const SupplierPage: React.FC<{}> = () => {
   const classes = useStyles();

@@ -1,6 +1,6 @@
 import { configureStore, combineReducers, ThunkAction, Action } from '@reduxjs/toolkit';
-import categories from './CategoriesSlice';
-import suppliers from './SuppliersSlice';
+import categories from '../features/categories/CategoriesSlice';
+import suppliers from '../features/suppliers/SuppliersSlice';
 
 export const store = configureStore({reducer: combineReducers({
     categories,

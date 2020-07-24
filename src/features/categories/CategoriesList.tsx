@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { CategoryModel } from '../../interfaces/CategoryModel';
-import CategoryCard from '../CategoryCard';
-import { ListContainer } from '../shared/';
+import { CategoryModel } from './CategoryModel';
+import CategoryCard from './CategoryCard';
+import  ListContainer from '../../components/List';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/store';
-import { fecthCategories } from '../../store/CategoriesSlice';
+import { RootState } from '../../reducers';
+import { fecthCategories } from './CategoriesSlice';
 
 const CategoriesList = () => {
  

@@ -8,8 +8,8 @@ import Box from '@material-ui/core/Box';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup';
-import useStyles from './styles';
-import { ProductModel } from '../../interfaces/ProductModel';
+import useStyles from './productForm.styles';
+import { ProductModel } from './ProductModel';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 const ProductEntrySchema = yup.object().shape({
