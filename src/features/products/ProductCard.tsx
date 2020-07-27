@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   ListItem, 
   ListItemIcon, 
@@ -19,7 +19,16 @@ import { getCategoryNameById } from '../../api/categories';
 const ProductCard: React.FC<ProductModel> = (props: ProductModel) => {
     const classes = useStyles();
   
-     const category =  getCategoryNameById(props.categoryId);
+    const [category, setCategory] = useState('');
+
+    const getCategory = async () => {
+        const name = await getCategoryNameById(props.categoryId);
+        await setCategory(name);
+    }
+    useEffect(() => {
+       getCategory();
+    }, [])
+
 
     return (
         <Paper elevation={2} className={classes.paper}> 
