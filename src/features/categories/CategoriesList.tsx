@@ -1,35 +1,38 @@
 import React, { useEffect } from 'react';
-import Typography from '@material-ui/core/Typography';
 import { CategoryModel } from './CategoryModel';
 import CategoryCard from './CategoryCard';
 import  ListContainer from '../../components/List';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../reducers';
-import { fecthCategories } from './CategoriesSlice';
+import { useObserver } from 'mobx-react-lite';
+import { useStores } from '../../store/StoresProvider';
+import 'mobx-react-lite/batchingForReactDom';
 
 const CategoriesList = () => {
- 
-    const dispatch = useDispatch();
+   const  { categoriesStore } = useStores()
 
-    const { isLaoding, categories } = useSelector<RootState, RootState["categories"]>(state => state.categories);
-    
-    useEffect(() => {
-      dispatch(fecthCategories())
-    }, [])
+   const { fetchCategories } = categoriesStore;
 
-    if (isLaoding) {
-      return <Typography variant="h5" color="primary">Loading...</Typography>
-    }
+   useEffect(() => {
+    fetchCategories();
+   },[])
 
-    return (
-    <ListContainer title="categories">
-    {categories.map((category: CategoryModel, index: number) => (
-        <CategoryCard 
-        key={`id-${index}`} 
-        {...category}></CategoryCard>
-    ))}
-    </ListContainer>
-    )
-}
+    return useObserver(() => {
+      const { categories, isLoading } = categoriesStore;
+
+       if(isLoading) {
+           return <>loading ...</>
+       }
+       
+       return (
+        <ListContainer title="categories">
+        {categories.map((category: CategoryModel, index: number) => (
+            <CategoryCard 
+            key={`id-${index}`} 
+            {...category}></CategoryCard>
+        ))}
+        </ListContainer>           
+       );
+
+    });
+};
 
 export default CategoriesList;

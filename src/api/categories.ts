@@ -1,42 +1,29 @@
 import { CategoryModel } from '../features/categories/CategoryModel';
+import Axios from 'axios';
 
 const baseUrl = 'https://stockmanagement2018.azurewebsites.net/api/categories/';
 
-export async function getCategories(): Promise<CategoryModel[]> {
-    const response = await fetch(baseUrl);
-    const categories = await response.json();
-
-    return categories;
+export const getCategories = async (): Promise<CategoryModel[]> => {
+  const response = await Axios.get<CategoryModel[]>(baseUrl);
+  return response.data;
 }
 
-export async function addCategory(paylaod: CategoryModel): Promise<any> {
-   await fetch(baseUrl, {
-     method: "POST",
-     headers: {
-        'Content-Type': 'application/json'
-     },
-     body: JSON.stringify(paylaod)
-    });
+export const getCategoryById = async (id: number): Promise<CategoryModel> => {
+  const response = await Axios.get<CategoryModel>(`${baseUrl} ${id}`);
+  return response.data;
 }
 
-export async function deleteCategory(id: number | undefined): Promise<any> {
-    console.log(id);
-    
-    await fetch(`${baseUrl}${id}`, { 
-     method: "DELETE", 
-     headers: {
-        'Content-Type': 'application/json'
-     }
-    });
+export const getCategoryNameById = async (id: number) => {
+  const response = await Axios.get<CategoryModel>(`${baseUrl} ${id}`);
+  return response.data.name;
 }
 
-export async function updateCategory(id: number, data: CategoryModel): Promise<any> {
-  
-  await fetch(`${baseUrl}${id}`, {
-    method: "POST",
-    headers: {
-     'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
+export const postCategory = (category: CategoryModel) => {
+  const headers = {
+    Accept: "application/json",
+   "Content-Type": "application/json"
+  }
+
+  Axios.post<CategoryModel>(baseUrl, category, { headers });
+
 }

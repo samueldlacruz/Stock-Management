@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import useStyles from './styles';
-import ProductForm from '../features/products/ProductForm';
+import ProductList from '../features/products/ProductList';
 
 const CategoryPage: React.FC<{}> = () => {
     const classes = useStyles();
@@ -15,7 +15,7 @@ const CategoryPage: React.FC<{}> = () => {
           <Typography className={classes.Typography} align="center" variant="h4" gutterBottom>
            <ShoppingCartIcon fontSize="large" className={classes.titleIcon}/>  Products 
           </Typography> 
-          <ProductForm></ProductForm>
+          <ProductList />
         </Container>
     )
 }

@@ -10,6 +10,7 @@ import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup';
 import useStyles from './supplierForm.styles';
 import { SupplierModel } from './Supplier.type';
+import { useStores } from '../../store/StoresProvider';
 
 const SupplierEntrySchema = yup.object().shape({
  name: yup.string().required('this is required'),
@@ -18,6 +19,7 @@ const SupplierEntrySchema = yup.object().shape({
 });
 
 const SupplierForm: React.FC = () => {
+    const { suppliersStore } = useStores();
 
     const classes = useStyles();
 
@@ -26,7 +28,8 @@ const SupplierForm: React.FC = () => {
     });
 
     const onSubmit = (data: SupplierModel): void => {
-      console.log(data);
+     suppliersStore.addSupplier(data);
+
       reset({
         name: '',
         phone: '',

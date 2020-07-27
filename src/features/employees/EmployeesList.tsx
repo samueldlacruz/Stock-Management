@@ -2,33 +2,37 @@ import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import  EmployeeCard from './EmployeeCard';
 import  ListContainer from '../../components/List';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../reducers';
-import { fecthEmployees } from './EmployeesSlice';
+import { useObserver } from 'mobx-react-lite';
+import { useStores } from '../../store/StoresProvider';
+import 'mobx-react-lite/batchingForReactDom';
 
 const EmployeesList = () => {
+    const  { employeesStore } = useStores()
+
+    const { fetchEmployees } = employeesStore;
  
-    const dispatch = useDispatch();
-
-    const { isLaoding, employees } = useSelector<RootState, RootState["employees"]>(state => state.employees);
-    
     useEffect(() => {
-      dispatch(fecthEmployees())
-    }, [])
+     fetchEmployees();
+    },[])
 
-    if (isLaoding) {
-      return <Typography variant="h5" color="primary">Loading...</Typography>
-    }
+    return useObserver(() => {
+      const { employees, isLoading } = employeesStore;
 
-    return (
-    <ListContainer title="employees">
-    {employees.map((employee, index: number) => (
-        <EmployeeCard 
-        key={`id-${index}`} 
-        {...employee} />
-    ))}
-    </ListContainer>
-    )
+       if(isLoading) {
+        return <Typography color="primary" variant="subtitle1">Loading ...</Typography>
+       }
+
+        return (
+        <ListContainer title="employees">
+        {employees.map((employee, index: number) => (
+            <EmployeeCard 
+            key={`id-${index}`} 
+            {...employee} />
+        ))}
+        </ListContainer>
+        );
+    });
+
 }
 
 export default EmployeesList;

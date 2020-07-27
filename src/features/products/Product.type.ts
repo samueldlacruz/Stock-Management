@@ -1,11 +1,11 @@
 export type ProductModel = {
   sku: string;
-  photo: any;
+  categoryId: number;
   name: string;
   description: string;
-  categoryId: number;
-  units: number;
-  sellingPrice: number;
+  photoUri: string;
   alertQuantity: number;
+  sellingPrice: number;
   marginProfitability: number;
+  units: number;
 }

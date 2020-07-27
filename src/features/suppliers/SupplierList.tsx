@@ -3,25 +3,26 @@ import  ListContainer from '../../components/List';
 import Typography from '@material-ui/core/Typography';
 import { SupplierModel } from './Supplier.type';
 import SupplierCard from './SupplierCard';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../reducers';
-import { fecthSuppliers } from './SuppliersSlice';
-
+import { useObserver } from 'mobx-react-lite';
+import { useStores } from '../../store/StoresProvider';
+import 'mobx-react-lite/batchingForReactDom';
 
 const SuppliersList = () => {
+   const { suppliersStore } = useStores();
+   
+   const { fetchsuppliers } = suppliersStore;
 
-    const dispatch = useDispatch();
+   useEffect(() => {
+     fetchsuppliers();
+   },[])
 
-    const { isLaoding, suppliers } = useSelector<RootState, RootState["suppliers"]>(state => state.suppliers);
-    
-    useEffect(() => {
-      dispatch(fecthSuppliers())
-    }, [])
-
-    if (isLaoding) {
-      return <Typography variant="h5" color="primary">Loading...</Typography>
-    }
-
+   return useObserver(() => {
+    const { suppliers, isLoading } = suppliersStore;
+   
+    if(isLoading) {
+      return <Typography color="primary" variant="subtitle1">Loading ...</Typography>
+     }
+     
     return (
      <ListContainer title="suppliers">
       {suppliers.map((supplier: SupplierModel, index: number) => (
@@ -33,7 +34,10 @@ const SuppliersList = () => {
         </SupplierCard>
       ))}
       </ListContainer>
-    )
+    );
+
+   });
+
 }
 
 export default SuppliersList;

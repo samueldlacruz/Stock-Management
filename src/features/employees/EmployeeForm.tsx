@@ -8,8 +8,11 @@ import Box from '@material-ui/core/Box';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup';
+import Snackbar from '@material-ui/core/Snackbar';
+import Notify from '../../components/Notify';
 import useStyles from './employeeForm.styles';
 import { EmployeeModal } from './Employee.type';
+import { useStores } from '../../store/StoresProvider';
 
 const EmployeeEntrySchema = yup.object().shape({
  name: yup.string().required('this is required'),
@@ -19,6 +22,7 @@ const EmployeeEntrySchema = yup.object().shape({
 });
 
 const EmployeeForm: React.FC = () => {
+    const { employeesStore } = useStores();
 
     const classes = useStyles();
 
@@ -26,8 +30,20 @@ const EmployeeForm: React.FC = () => {
       resolver: yupResolver(EmployeeEntrySchema)
     });
 
+    const [openNotify, setOpenNotify] = React.useState(false);
+
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpenNotify(false);
+    };
+
     const onSubmit = (data: EmployeeModal): void => {
-      console.log(data);
+      employeesStore.addEmployee(data);
+
+      setOpenNotify(true);
       reset({
         name: '',
         lastname: '',
@@ -101,6 +117,16 @@ const EmployeeForm: React.FC = () => {
               </Grid>
             </form>
         </Paper>
+        <Snackbar 
+         anchorOrigin={{vertical:'bottom',horizontal: 'right'}}
+         open={openNotify} 
+         autoHideDuration={6000} 
+         onClose={handleClose}>
+          <Notify 
+          title="nueva empleado" 
+          content="se agrego una empleado"
+          type="success"/>
+        </Snackbar>
      </Box>
     )
 }

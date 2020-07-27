@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
-import { Provider } from 'react-redux';
-import { store } from './reducers';
 import App from './components/App';
+import { StoresProvider } from './store/StoresProvider';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
-    <Provider store={store}>
-        <App />
-    </Provider>
+    <StoresProvider>
+       <App />
+    </StoresProvider> 
   </ThemeProvider>,
   document.querySelector('#root'),
 );

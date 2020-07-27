@@ -1,10 +1,19 @@
 import { SupplierModel } from '../features/suppliers/Supplier.type';
+import Axios from 'axios';
 
 const baseUrl = 'https://stockmanagement2018.azurewebsites.net/api/suppliers/';
 
-export async function getSuppliers(): Promise<SupplierModel[]> {
-    const response = await fetch(baseUrl);
-    const suppliers = await response.json();
+export const getSuppliers = async (): Promise<SupplierModel[]> => {
+  const response = await Axios.get<SupplierModel[]>(baseUrl);
+  return response.data;
+}
 
-    return suppliers;
+export const postSupplier = (supplier: SupplierModel) => {
+  const headers = {
+    Accept: "application/json",
+   "Content-Type": "application/json"
+  }
+
+  Axios.post<SupplierModel>(baseUrl, supplier, { headers });
+
 }

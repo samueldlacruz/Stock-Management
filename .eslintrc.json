@@ -4,6 +4,11 @@
     "es6": true,
     "node": true
   },
+  "settings": {
+    "import/resolver": {
+      "typescript": {} // this loads <rootdir>/tsconfig.json to eslint
+    }
+  },
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/eslint-recommended",
@@ -21,6 +26,7 @@
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/camelcase": "off",
       "@typescript-eslint/array-type": "off",
-      "@typescript-eslint/no-object-literal-type-assertion": "off"
+      "@typescript-eslint/no-object-literal-type-assertion": "off",
+      "@typescript-eslint/no-unused-vars": "off"
     }
 }

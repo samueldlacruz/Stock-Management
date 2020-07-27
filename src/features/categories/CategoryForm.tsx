@@ -9,20 +9,19 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup';
-import { useDispatch } from 'react-redux';
 import Notify from '../../components/Notify';
-import { submitCategory } from './CategoriesSlice';
 import { CategoryModel } from './CategoryModel';
 import useStyles from './categoryForm.styles';
+import { useStores } from '../../store/StoresProvider';
 
 const CategoryEntrySchema = yup.object().shape({
  name: yup.string().required('this is required'),
  description: yup.string().max(55).required('this is required'),
 });
 
-const CategoryForm: React.FC = () => {
-    const dispatch = useDispatch();
-   
+const CategoryForm: React.FC = () => {  
+    const { categoriesStore } = useStores();
+
     const classes = useStyles();
 
     const { register, handleSubmit, reset, errors } = useForm<CategoryModel>({
@@ -40,7 +39,7 @@ const CategoryForm: React.FC = () => {
     };
 
     const onSubmit = (data: CategoryModel): void => {
-      dispatch(submitCategory(data.name, data.description));
+     categoriesStore.addCategory(data);
 
       setOpenNotify(true);
 
@@ -92,7 +91,11 @@ const CategoryForm: React.FC = () => {
               </Grid>
             </form>
         </Paper>
-        <Snackbar open={openNotify} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar 
+         anchorOrigin={{vertical:'bottom',horizontal: 'right'}}
+         open={openNotify} 
+         autoHideDuration={6000} 
+         onClose={handleClose}>
           <Notify 
           title="nueva categoria" 
           content="se agrego una categoria"
