@@ -10,7 +10,6 @@ import {
 import {
  Store,
  EditOutlined,
- UpdateOutlined,
  DeleteOutlined } from '@material-ui/icons/';
 
 import { SupplierModel } from './Supplier.type';

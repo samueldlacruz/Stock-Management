@@ -3,17 +3,21 @@ import Axios from 'axios';
 
 const baseUrl = 'https://stockmanagement2018.azurewebsites.net/api/suppliers/';
 
-export const getSuppliers = async (): Promise<SupplierModel[]> => {
-  const response = await Axios.get<SupplierModel[]>(baseUrl);
-  return response.data;
+const headers = {
+  Accept: "application/json",
+ "Content-Type": "application/json"
 }
 
-export const postSupplier = (supplier: SupplierModel) => {
-  const headers = {
-    Accept: "application/json",
-   "Content-Type": "application/json"
-  }
+export const getSuppliers = async () => {
+  const suppliers = await Axios.get<SupplierModel[]>(baseUrl);
+  return suppliers.data;
+}
 
-  Axios.post<SupplierModel>(baseUrl, supplier, { headers });
+export const postSupplier = async (supplier: SupplierModel) => {
+ await Axios.post<SupplierModel>(baseUrl, supplier, { headers });
+}
 
+export const deleteSupplier = async (id: number) => {
+  const supplierUrl = `${baseUrl}/${id}`;
+  await Axios.delete<SupplierModel>(supplierUrl);
 }

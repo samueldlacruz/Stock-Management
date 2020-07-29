@@ -14,9 +14,12 @@ import {
 
 import { CategoryModel } from './CategoryModel';
 import  useStyles from './categoryCard.styles';
+import { useStores } from '../../store/StoresProvider'; 
 
 const CategoryCard: React.FC<CategoryModel> = (props: CategoryModel) => {
     const classes = useStyles();
+
+    const { categoriesStore } = useStores();
 
     return (
         <Paper elevation={2} className={classes.paper}> 
@@ -29,7 +32,7 @@ const CategoryCard: React.FC<CategoryModel> = (props: CategoryModel) => {
             <IconButton edge="end" className={classes.updateIcon} aria-label="edit ">
                 <EditOutlined />
             </IconButton>
-            <IconButton edge="end" onClick={() => console.log(props.id)} className={classes.deleteIcon} aria-label="delete">
+            <IconButton edge="end" onClick={() => categoriesStore.removeCategory(props.id)} className={classes.deleteIcon} aria-label="delete">
                 <DeleteOutlined />
             </IconButton>
             </ListItemSecondaryAction>

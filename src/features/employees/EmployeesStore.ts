@@ -1,6 +1,6 @@
 import { observable, action, runInAction } from 'mobx';
 import { EmployeeModal } from './Employee.type';
-import { getEmployees, postEmployee } from '../../api/employees';
+import { getEmployees, postEmployee, deleteEmployee } from '../../api/employees';
 
 export class EmployeesStore {
   @observable employees: EmployeeModal[] = []
@@ -21,6 +21,12 @@ export class EmployeesStore {
   addEmployee = async (employee: EmployeeModal) => {
    postEmployee(employee);
    this.employees.push(employee);
+  }
+
+  @action
+  removeEmployee = async (id: number | undefined) => {
+    deleteEmployee(id);
+    this.employees = this.employees.filter(e => e.id !== id);
   }
 
 }

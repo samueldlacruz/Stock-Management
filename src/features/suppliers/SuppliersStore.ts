@@ -21,6 +21,7 @@ export class SuppliersStore {
   addSupplier = async (supplier: SupplierModel) => {
    postSupplier(supplier);
    this.suppliers.push(supplier);
+   this.fetchsuppliers();
   }
 
 }

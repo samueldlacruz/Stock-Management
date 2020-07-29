@@ -28,9 +28,7 @@ const SuppliersList = () => {
       {suppliers.map((supplier: SupplierModel, index: number) => (
         <SupplierCard 
         key={`id-${index}`}
-        name={supplier.name}
-        phone={supplier.phone}
-        email={supplier.email} >
+        {...supplier}>
         </SupplierCard>
       ))}
       </ListContainer>
