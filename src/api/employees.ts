@@ -24,7 +24,8 @@ export const getEmployeeNameById = async (id: number) => {
 }
 
 export const postEmployee = async (employee: EmployeeModal) => {
- await Axios.post<EmployeeModal>(baseUrl, employee, { headers });
+ const newEmployee = await Axios.post<EmployeeModal>(baseUrl, employee, { headers });
+ return newEmployee.data;
 }
 
 export const deleteEmployee = async (id: number | undefined) => {

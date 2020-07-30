@@ -3,5 +3,5 @@ export type EmployeeModal = {
     name: string;
     lastname: string;
     email: string;
-    phone: number | string;
+    phone: number;
 }

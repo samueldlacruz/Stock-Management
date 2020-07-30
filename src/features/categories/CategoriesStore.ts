@@ -19,8 +19,8 @@ export class CategoriesStore {
 
   @action
   addCategory = async (category: CategoryModel) => {
-   postCategory(category);
-   this.categories.push(category);
+  const newCategory = await postCategory(category);
+   this.categories.push(newCategory);
   }
 
   @action

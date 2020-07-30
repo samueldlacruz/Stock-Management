@@ -24,7 +24,8 @@ export const getCategoryNameById = async (id: number) => {
 }
 
 export const postCategory = async (category: CategoryModel) => {
- await Axios.post<CategoryModel>(baseUrl, category, { headers });
+ const newCategory = await Axios.post<CategoryModel>(baseUrl, category, { headers });
+ return newCategory.data;
 }
 
 export const deleteCategory = async (id: number | undefined) => {

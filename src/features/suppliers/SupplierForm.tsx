@@ -2,8 +2,10 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Snackbar from '@material-ui/core/Snackbar';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import Notify from '../../components/Notify';
 import Box from '@material-ui/core/Box';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
@@ -14,7 +16,7 @@ import { useStores } from '../../store/StoresProvider';
 
 const SupplierEntrySchema = yup.object().shape({
  name: yup.string().required('this is required'),
- phone: yup.string().max(55).required('this is required'),
+ phone: yup.number().required('this is required'),
  email: yup.string().max(55).required('this is required'),
 });
 
@@ -27,12 +29,24 @@ const SupplierForm: React.FC = () => {
       resolver: yupResolver(SupplierEntrySchema)
     });
 
+    const [openNotify, setOpenNotify] = React.useState(false);
+
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpenNotify(false);
+    };
+
     const onSubmit = (data: SupplierModel): void => {
      suppliersStore.addSupplier(data);
+     
+     setOpenNotify(true);
 
       reset({
         name: '',
-        phone: '',
+        phone: undefined,
         email: ''
       });
     };
@@ -65,7 +79,7 @@ const SupplierForm: React.FC = () => {
                     id="phone"
                     name="phone"
                     label="phone"
-                    type="tell"
+                    type="number"
                     variant="outlined"
                     size="small"
                     />                
@@ -89,6 +103,16 @@ const SupplierForm: React.FC = () => {
               </Grid>
             </form>
         </Paper>
+        <Snackbar 
+         anchorOrigin={{vertical:'bottom', horizontal: 'right'}}
+         open={openNotify} 
+         autoHideDuration={6000} 
+         onClose={handleClose}>
+          <Notify 
+          title="nueva supplier" 
+          content="se agrego un nuevo supplier"
+          type="success"/>
+        </Snackbar>
      </Box>
     )
 }

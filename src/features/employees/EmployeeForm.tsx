@@ -16,7 +16,7 @@ import { useStores } from '../../store/StoresProvider';
 
 const EmployeeEntrySchema = yup.object().shape({
  name: yup.string().required('this is required'),
- phone: yup.string().max(55).required('this is required'),
+ phone: yup.number().required('this is required'),
  email: yup.string().max(55).required('this is required'),
  lastname: yup.string().required('this is required')
 });
@@ -48,7 +48,7 @@ const EmployeeForm: React.FC = () => {
         name: '',
         lastname: '',
         email: '',
-        phone: ''
+        phone: undefined
       });
     };
 
@@ -88,7 +88,7 @@ const EmployeeForm: React.FC = () => {
                 <Grid item xs={6}>
                     <TextField
                     inputRef={register}
-                    type="tel"
+                    type="number"
                     id="phone"
                     name="phone"
                     label="phone"

@@ -19,8 +19,8 @@ export class EmployeesStore {
 
   @action
   addEmployee = async (employee: EmployeeModal) => {
-   postEmployee(employee);
-   this.employees.push(employee);
+  const newEmployee = await postEmployee(employee);
+   this.employees.push(newEmployee);
   }
 
   @action

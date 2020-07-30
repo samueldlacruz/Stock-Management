@@ -14,10 +14,12 @@ export const getSuppliers = async () => {
 }
 
 export const postSupplier = async (supplier: SupplierModel) => {
- await Axios.post<SupplierModel>(baseUrl, supplier, { headers });
+ const newSupplier = await Axios.post<SupplierModel>(baseUrl, supplier, { headers });
+ return newSupplier.data;
 }
 
-export const deleteSupplier = async (id: number) => {
+export const deleteSupplier = async (id: number | undefined) => {
   const supplierUrl = `${baseUrl}/${id}`;
+  
   await Axios.delete<SupplierModel>(supplierUrl);
 }

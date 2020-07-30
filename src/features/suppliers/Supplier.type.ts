@@ -1,5 +1,6 @@
-export type SupplierModel = {
+export interface SupplierModel {
+    id?: number | undefined;
     name: string;
-    phone: string;
+    phone: number;
     email: string;
 }
