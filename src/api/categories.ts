@@ -1,5 +1,6 @@
 import { CategoryModel } from '../features/categories/CategoryModel';
 import Axios from 'axios';
+import { Category } from '@material-ui/icons';
 
 const baseUrl = 'https://stockmanagement2018.azurewebsites.net/api/categories/';
 
@@ -32,4 +33,11 @@ export const deleteCategory = async (id: number | undefined) => {
   const categoryUrl = `${baseUrl}/${id}`;
 
   await Axios.delete<CategoryModel>(categoryUrl);
+}
+
+export const updateCategory = async (category: CategoryModel) => {
+  const categoryUrl = `${baseUrl}/${category.id}`;
+
+  const updatedCategory = await Axios.put<CategoryModel>(categoryUrl, category, { headers });
+  return updatedCategory.data;
 }

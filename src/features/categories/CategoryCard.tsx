@@ -16,9 +16,12 @@ import { CategoryModel } from './CategoryModel';
 import  useStyles from './categoryCard.styles';
 import { useStores } from '../../store/StoresProvider';
 import AlertDialog from '../../components/AlertDialog'; 
+import CategoryEdit from './CategoryEdit';
 
 const CategoryCard: React.FC<CategoryModel> = (props: CategoryModel) => {
     const [open, setOpen] = React.useState(false);
+    const [openEdit, setOpenEdit] = React.useState(false);
+
     const classes = useStyles();
 
     const { categoriesStore } = useStores();
@@ -30,6 +33,14 @@ const CategoryCard: React.FC<CategoryModel> = (props: CategoryModel) => {
     
     const handleClose = () => {
        setOpen(false);
+    };
+
+    const handleClickOpenEdit = () => {
+        setOpenEdit(true);
+    };
+    
+    const handleCloseEdit = () => {
+       setOpenEdit(false);
     };
 
     const handleDelete = () => {
@@ -45,14 +56,23 @@ const CategoryCard: React.FC<CategoryModel> = (props: CategoryModel) => {
             </ListItemIcon>
             <ListItemText primary={props.name} secondary={props.description} />
             <ListItemSecondaryAction>
-            <IconButton edge="end" className={classes.updateIcon} aria-label="edit ">
-                <EditOutlined />
-            </IconButton>
-            <IconButton edge="end" onClick={handleClickOpen} className={classes.deleteIcon} aria-label="delete">
-                <DeleteOutlined />
-            </IconButton>
+               <IconButton 
+                edge="end" 
+                onClick={handleClickOpenEdit}
+                className={classes.updateIcon} 
+                aria-label="edit ">
+                    <EditOutlined />
+                </IconButton>
+               <IconButton 
+                 edge="end" 
+                 onClick={handleClickOpen} 
+                 className={classes.deleteIcon} 
+                 aria-label="delete">
+                 <DeleteOutlined />
+               </IconButton>
             </ListItemSecondaryAction>
         </ListItem>
+        <CategoryEdit open={openEdit} handleClose={handleCloseEdit} data={props}/>
         <AlertDialog 
         open={open}
         title="delete category"

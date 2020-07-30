@@ -1,6 +1,6 @@
 import { observable, action, runInAction } from 'mobx';
 import { SupplierModel } from './Supplier.type';
-import { getSuppliers, postSupplier, deleteSupplier } from '../../api/suppliers';
+import { getSuppliers, postSupplier, deleteSupplier, updateSupplier } from '../../api/suppliers';
 
 export class SuppliersStore {
   @observable suppliers: SupplierModel[] = []
@@ -21,6 +21,16 @@ export class SuppliersStore {
   addSupplier = async (supplier: SupplierModel) => {
   const newSupplier = await postSupplier(supplier);
    this.suppliers.push(newSupplier);
+  }
+
+  @action
+  editSupplier = async (supplier: SupplierModel) => {
+   const updatedSupplier = await updateSupplier(supplier);
+   
+   runInAction(() => {
+     this.suppliers = this.suppliers.map(item => item.id === updatedSupplier.id ? updatedSupplier : item);
+     this.fetchsuppliers();
+   })
   }
 
   @action

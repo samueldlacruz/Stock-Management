@@ -23,3 +23,10 @@ export const deleteSupplier = async (id: number | undefined) => {
   
   await Axios.delete<SupplierModel>(supplierUrl);
 }
+
+export const updateSupplier = async (supplier: SupplierModel) => {
+  const suppliersUrl = `${baseUrl}/${supplier.id}`;
+
+  const updatedSuppliers = await Axios.put<SupplierModel>(suppliersUrl, supplier, { headers });
+  return updatedSuppliers.data;
+}

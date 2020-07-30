@@ -106,7 +106,7 @@ const SupplierForm: React.FC = () => {
         <Snackbar 
          anchorOrigin={{vertical:'bottom', horizontal: 'right'}}
          open={openNotify} 
-         autoHideDuration={6000} 
+         autoHideDuration={3000} 
          onClose={handleClose}>
           <Notify 
           title="nueva supplier" 

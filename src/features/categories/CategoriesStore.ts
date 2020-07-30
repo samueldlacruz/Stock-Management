@@ -1,6 +1,6 @@
 import { observable, action, runInAction } from 'mobx';
 import { CategoryModel } from './CategoryModel';
-import { getCategories, postCategory, deleteCategory } from '../../api/categories';
+import { getCategories, postCategory, deleteCategory, updateCategory } from '../../api/categories';
 
 export class CategoriesStore {
   @observable categories: CategoryModel[] = []
@@ -21,6 +21,16 @@ export class CategoriesStore {
   addCategory = async (category: CategoryModel) => {
   const newCategory = await postCategory(category);
    this.categories.push(newCategory);
+  }
+
+  @action
+  editCategory = async (category: CategoryModel) => {
+   const updatedCategory = await updateCategory(category);
+   
+   runInAction(() => {
+     this.categories = this.categories.map(item => item.id === updatedCategory.id ? updatedCategory : item);
+     this.fetchCategories();
+   })
   }
 
   @action
