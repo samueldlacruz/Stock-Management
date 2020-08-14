@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { 
   ListItem, 
-  ListItemIcon, 
+  ListItemAvatar,
+  Avatar, 
   ListItemText, 
   ListItemSecondaryAction,
   Paper,
-  IconButton } from '@material-ui/core';
+  IconButton,
+ Typography} from '@material-ui/core';
 
 import {
- Label,
  EditOutlined,
  DeleteOutlined } from '@material-ui/icons/';
 
@@ -33,11 +34,55 @@ const ProductCard: React.FC<ProductModel> = (props: ProductModel) => {
     return (
         <Paper elevation={2} className={classes.paper}> 
         <ListItem className={classes.listItem}>
-            <ListItemIcon>
-            <Label />
-            </ListItemIcon>
-            <ListItemText primary={props.sku} secondary={category}/>
-            <ListItemText primary={props.name} secondary={props.description} />
+        <ListItemAvatar>
+          <Avatar alt={`photo ${props.name}`} src={props.photoUri} />
+        </ListItemAvatar>
+            <ListItemText 
+            primary={
+                <span>
+                  <strong>{props.sku}</strong>-{props.name}
+                </span>
+                } 
+            secondary={
+                <React.Fragment>
+                <Typography
+                  component="span"
+                  className={classes.block}
+                  variant="subtitle1"
+                  color="textPrimary"
+                >
+                 {category}
+                </Typography>
+                <Typography
+                  component="span"
+                  variant="body1"
+                  className={classes.block}
+                  color="textPrimary"
+                >
+                 {props.description}
+                </Typography>
+                <Typography
+                  component="span"
+                  variant="body2"
+                  className={classes.block}
+                  color="textPrimary"
+                >
+                <strong>units:</strong> {props.units} 
+                <strong> alert quantity:</strong> {props.alertQuantity} %
+                </Typography>
+
+                <Typography
+                  component="span"
+                  variant="body2"
+                  className={classes.block}
+                  color="textPrimary"
+                >
+                <strong>price: </strong> {props.sellingPrice}
+                <strong> margin profitability:</strong> {props.marginProfitability}
+                </Typography>
+              </React.Fragment>
+            }
+            />
             <ListItemSecondaryAction>
             <IconButton edge="end" className={classes.updateIcon} aria-label="edit ">
                 <EditOutlined />

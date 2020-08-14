@@ -25,7 +25,7 @@ const SupplierForm: React.FC = () => {
 
     const classes = useStyles();
 
-    const { register, handleSubmit, reset } = useForm<SupplierModel>({
+    const { register, handleSubmit, reset, errors } = useForm<SupplierModel>({
       resolver: yupResolver(SupplierEntrySchema)
     });
 
@@ -71,6 +71,7 @@ const SupplierForm: React.FC = () => {
                     variant="outlined"
                     size="small"
                     fullWidth
+                    error={ errors.name ? true : false }
                     />
                 </Grid>
                 <Grid item xs={6}>
@@ -82,6 +83,7 @@ const SupplierForm: React.FC = () => {
                     type="number"
                     variant="outlined"
                     size="small"
+                    error={ errors.phone ? true : false }
                     />                
                 </Grid>
                 <Grid item xs={6}>
@@ -93,6 +95,7 @@ const SupplierForm: React.FC = () => {
                     type="email"
                     variant="outlined"
                     size="small"
+                    error={ errors.email ? true : false }
                     />                
                 </Grid>
                 <Grid item xs={12}>

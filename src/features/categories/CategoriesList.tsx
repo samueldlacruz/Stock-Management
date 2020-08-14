@@ -7,30 +7,31 @@ import { useStores } from '../../store/StoresProvider';
 import 'mobx-react-lite/batchingForReactDom';
 
 const CategoriesList = () => {
-   const  { categoriesStore } = useStores()
 
-   const { fetchCategories } = categoriesStore;
+    const  { categoriesStore } = useStores()
 
-   useEffect(() => {
-    fetchCategories();
-   },[])
+    const { fetchCategories } = categoriesStore;
+
+    useEffect(() => {
+        fetchCategories();
+    },[])
 
     return useObserver(() => {
-      const { categories, isLoading } = categoriesStore;
+        const { categories, isLoading } = categoriesStore;
 
-       if(isLoading) {
-           return <>loading ...</>
-       }
-       
-       return (
-        <ListContainer title="categories">
-        {categories.map((category: CategoryModel, index: number) => (
-            <CategoryCard 
-            key={`id-${index}`} 
-            {...category}></CategoryCard>
-        ))}
-        </ListContainer>           
-       );
+        if(isLoading) {
+            return <>loading ...</>
+        }
+        
+        return (
+            <ListContainer title="categories">
+            {categories.map((category: CategoryModel, index: number) => (
+                <CategoryCard 
+                key={`id-${index}`} 
+                {...category}></CategoryCard>
+            ))}
+            </ListContainer>           
+        );
 
     });
 };

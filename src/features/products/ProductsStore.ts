@@ -1,5 +1,5 @@
 import { observable, action, runInAction } from 'mobx';
-import { ProductModel } from './Product.type';
+import { ProductModel, NewProductModel } from './Product.type';
 import { getProducts, postProduct } from '../../api/products';
 
 export class ProductsStore {
@@ -19,9 +19,9 @@ export class ProductsStore {
   }
 
   @action
-  addProduct = async (product: ProductModel) => {
-   postProduct(product);
-   this.products.push(product);
+  addProduct = async (product: NewProductModel) => {
+  const newProduct = await postProduct(product);
+  this.products.push(newProduct);
   }
 
 }

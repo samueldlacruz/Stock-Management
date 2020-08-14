@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
      width: '100%'
     },
     paper: {
-      width: '50%',
+      width: '70%',
       padding: theme.spacing(2),
       display:'flex',
       flexDirection: 'column',

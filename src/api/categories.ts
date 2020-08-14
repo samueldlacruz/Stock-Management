@@ -1,6 +1,5 @@
 import { CategoryModel } from '../features/categories/CategoryModel';
 import Axios from 'axios';
-import { Category } from '@material-ui/icons';
 
 const baseUrl = 'https://stockmanagement2018.azurewebsites.net/api/categories/';
 
