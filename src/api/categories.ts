@@ -1,7 +1,7 @@
 import { CategoryModel } from '../features/categories/CategoryModel';
 import Axios from 'axios';
 
-const baseUrl = 'https://stockmanagement2018.azurewebsites.net/api/categories/';
+const baseUrl = 'https://stockmanagement2017.azurewebsites.net/api/categories/';
 
 const headers = {
   Accept: "application/json",

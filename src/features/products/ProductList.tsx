@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ProductModel } from './Product.type';
+import { ProductModel } from './Product.types';
 import ProductCard from './ProductCard';
 import  ListContainer from '../../components/List';
 import { useObserver } from 'mobx-react-lite';

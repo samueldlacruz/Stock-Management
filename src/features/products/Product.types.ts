@@ -6,11 +6,13 @@ export type ProductModel = {
   photoUri: string;
   alertQuantity?: number | null; 
   sellingPrice: number;
-  marginProfitability?: number | null;
   units: number;
+  createdDate?: string;
+  updated?: string;
+  quantity: number;
 }
 
-export interface NewProductModel {
+export type NewProductModel = {
   sku: string;
   categoryId: number;
   image: any;
@@ -18,4 +20,5 @@ export interface NewProductModel {
   description: string;
   units: number;
   sellingPrice: number;
+  quantity: number;
 }

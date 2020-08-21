@@ -6,6 +6,7 @@ import {
   ListItemText, 
   ListItemSecondaryAction,
   Paper,
+  Badge,
   IconButton,
  Typography} from '@material-ui/core';
 
@@ -13,27 +14,43 @@ import {
  EditOutlined,
  DeleteOutlined } from '@material-ui/icons/';
 
-import { ProductModel } from './Product.type';
+import { ProductModel } from './Product.types';
+import { useStores } from '../../store/StoresProvider';
 import  useStyles from './productCard.styles';
+import AlertDialog from '../../components/AlertDialog';
 import { getCategoryNameById } from '../../api/categories';
 
 const ProductCard: React.FC<ProductModel> = (props: ProductModel) => {
     const classes = useStyles();
   
     const [category, setCategory] = useState('');
+    const [openDialogDelete, setOpenDialogDelete] = React.useState(false);
+
+    const { productsStore: { removeProduct } } = useStores();
 
     const getCategory = async () => {
         const name = await getCategoryNameById(props.categoryId);
         await setCategory(name);
     }
+
     useEffect(() => {
        getCategory();
     }, [])
 
+   const handleCloseDelete = () => setOpenDialogDelete(false);
+
+   const handleDelete = () => {
+    removeProduct(props.sku, props.photoUri);
+    
+    setOpenDialogDelete(false);
+   } 
+   
+   const handleClickOpenDelete = () => setOpenDialogDelete(true);
 
     return (
         <Paper elevation={2} className={classes.paper}> 
         <ListItem className={classes.listItem}>
+        <Badge badgeContent={props.quantity} color="primary" />
         <ListItemAvatar>
           <Avatar alt={`photo ${props.name}`} src={props.photoUri} />
         </ListItemAvatar>
@@ -67,8 +84,7 @@ const ProductCard: React.FC<ProductModel> = (props: ProductModel) => {
                   className={classes.block}
                   color="textPrimary"
                 >
-                <strong>units:</strong> {props.units} 
-                <strong> alert quantity:</strong> {props.alertQuantity} %
+                <strong>units:</strong> {props.units}
                 </Typography>
 
                 <Typography
@@ -78,7 +94,7 @@ const ProductCard: React.FC<ProductModel> = (props: ProductModel) => {
                   color="textPrimary"
                 >
                 <strong>price: </strong> {props.sellingPrice}
-                <strong> margin profitability:</strong> {props.marginProfitability}
+                <strong> quantity:</strong> {props.quantity}
                 </Typography>
               </React.Fragment>
             }
@@ -87,14 +103,20 @@ const ProductCard: React.FC<ProductModel> = (props: ProductModel) => {
             <IconButton edge="end" className={classes.updateIcon} aria-label="edit ">
                 <EditOutlined />
             </IconButton>
-            <IconButton edge="end" onClick={() => console.log(props.sku)} className={classes.deleteIcon} aria-label="delete">
+            <IconButton edge="end" onClick={handleClickOpenDelete} className={classes.deleteIcon} aria-label="delete">
                 <DeleteOutlined />
             </IconButton>
             </ListItemSecondaryAction>
         </ListItem>
+        <AlertDialog 
+         open={openDialogDelete}
+         title="delete product"
+         description={`product ${props.name} delete`}
+         onClose={handleCloseDelete}
+         onAction={handleDelete}
+        />
         </Paper> 
     )
 }
-
 
 export default ProductCard;

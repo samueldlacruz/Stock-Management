@@ -1,7 +1,7 @@
 import { SupplierModel } from '../features/suppliers/Supplier.type';
 import Axios from 'axios';
 
-const baseUrl = 'https://stockmanagement2018.azurewebsites.net/api/suppliers/';
+const baseUrl = 'https://stockmanagement2017.azurewebsites.net/api/suppliers/';
 
 const headers = {
   Accept: "application/json",

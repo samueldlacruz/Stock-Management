@@ -1,4 +1,4 @@
-import { app } from '../firebase/';
+import { app } from '../firebase';
 
 export const uploadImage = async (imageAsFile: FileList) => {
   const file = imageAsFile[0];
@@ -13,4 +13,9 @@ export const uploadImage = async (imageAsFile: FileList) => {
   
   return `${fileUrl}`;
 
+}
+
+export const deleteImage = async (imageUrl: string) => {
+  const fileRef = app.storage().refFromURL(imageUrl);
+  await fileRef.delete();
 }

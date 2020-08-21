@@ -5,14 +5,15 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { MenuItem } from '@material-ui/core';
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
+import { MenuItem, Snackbar } from '@material-ui/core';
+import InputUploadImage from '../../components/InputUploadImage';
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import useStyles from './productForm.styles';
-import { NewProductModel } from './Product.type';
+import { NewProductModel } from './Product.types';
 import { useObserver } from 'mobx-react-lite';
+import Notify from '../../components/Notify';
 import { useStores } from '../../store/StoresProvider';
 import { getCategories } from '../../api/categories';
 import { CategoryModel } from '../../features/categories/CategoryModel';
@@ -23,7 +24,12 @@ const ProductEntrySchema = yup.object().shape({
   name: yup.string().required('this is required'),
   description: yup.string().max(55).required('this is required'),
   units: yup.number().required('this is required'),
-  sellingPrice: yup.number().required('this is required')
+  quantity: yup.number().required('this is required'),
+  sellingPrice: yup.number().required('this is required'),
+  image: yup.mixed().required('necesita poner una foto')
+  .test('fileSize', 'el archivo es muy pesado', (value) => {
+    return value && value[0].size <= 2000000;
+  })
  });
 
 const ProductForm: React.FC = () => {
@@ -31,6 +37,7 @@ const ProductForm: React.FC = () => {
 
     const { productsStore: { addProduct } } = useStores();
 
+    const [openNotify, setOpenNotify] = React.useState(false);
     const [categories, setCategories] = useState<CategoryModel[]>([])
 
     const getCategoryAll = async () => {
@@ -48,13 +55,16 @@ const ProductForm: React.FC = () => {
 
     const onSubmit = async (data: NewProductModel) => {
        addProduct(data);
-
+       
+       setOpenNotify(true);
+       
        reset({
          sku:'',
          name: '',
          description: '',
          units: undefined,
-         sellingPrice: undefined
+         sellingPrice: undefined,
+         image: ''
        });
     }
 
@@ -71,23 +81,9 @@ const ProductForm: React.FC = () => {
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
             <Grid container className={classes.root} spacing={2}>
              <Grid item xs={12}>
-                <Button
-                variant="contained"
-                color="primary"
-                component="label"
-                >
-                <PhotoCameraIcon />
-                <TextField
-                    type="file"
-                    variant="standard"
-                    inputRef={register}
-                    id="image"
-                    name="image"
-                    fullWidth
-                />
-                </Button>
+               <InputUploadImage register={register} />
              </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={6}>
                     <TextField
                     inputRef={register}
                     id="sku"
@@ -95,9 +91,10 @@ const ProductForm: React.FC = () => {
                     label="SKU product"
                     variant="outlined"
                     size="small"
+                    fullWidth
                     />                      
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid item xs={6}>
                     <TextField
                     inputRef={register}
                     id="name"
@@ -105,6 +102,7 @@ const ProductForm: React.FC = () => {
                     label="name"
                     variant="outlined"
                     size="small"
+                    fullWidth
                     error={ errors.name ? true : false }
                     />                      
                   </Grid>
@@ -123,6 +121,9 @@ const ProductForm: React.FC = () => {
                   <Controller
                   as={
                     <TextField variant="outlined" select size="small">
+                       <MenuItem value="default">
+                         Select category
+                        </MenuItem>
                      {categories.map((category) => (
                         <MenuItem key={category.id} value={category.id}>
                         {category.name}
@@ -132,7 +133,7 @@ const ProductForm: React.FC = () => {
                   }
                   name="categoryId"
                   control={control}
-                  defaultValue={1}>
+                  defaultValue="default">
                   </Controller>
                   </Grid>
                   <Grid item xs={4}>
@@ -159,6 +160,18 @@ const ProductForm: React.FC = () => {
                     error={ errors.sellingPrice ? true : false }
                     />                      
                   </Grid>
+                  <Grid item xs={4}>
+                    <TextField
+                    inputRef={register}
+                    id="quantity"
+                    name="quantity"
+                    label="Quantity"
+                    variant="outlined"
+                    type="number"
+                    size="small"
+                    error={ errors.quantity ? true : false }
+                    />                      
+                  </Grid>
                 <Grid item xs={12}>
                     <Button type="submit" variant="contained" fullWidth color="primary">
                       CREATE PRODUCT
@@ -167,6 +180,12 @@ const ProductForm: React.FC = () => {
             </Grid>
             </form>
         </Paper>
+        <Snackbar 
+         anchorOrigin={{vertical:'bottom',horizontal: 'right'}}
+         open={openNotify} 
+         autoHideDuration={6000}>
+          <Notify title="nueva producto" content="se agrego una producto" type="success"/>
+        </Snackbar>
      </Box>
     )
    });

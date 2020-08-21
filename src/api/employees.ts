@@ -1,7 +1,7 @@
 import { EmployeeModal } from '../features/employees/Employee.type';
 import Axios from 'axios';
 
-const baseUrl = 'https://stockmanagement2018.azurewebsites.net/api/employees/';
+const baseUrl = 'https://stockmanagement2017.azurewebsites.net/api/employees/';
 
 const headers = {
   Accept: "application/json",
