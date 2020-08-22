@@ -24,7 +24,7 @@ const CategoriesList = () => {
         }
         
         return (
-            <ListContainer title="categories">
+            <ListContainer title="categorias">
             {categories.map((category: CategoryModel, index: number) => (
                 <CategoryCard 
                 key={`id-${index}`} 

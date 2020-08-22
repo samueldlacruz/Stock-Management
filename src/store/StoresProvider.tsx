@@ -25,7 +25,7 @@ export const StoresProvider: React.FC<PropsWithChildren<{}>> = ({children}) => {
     categoriesStore, 
     employeesStore, 
     suppliersStore, 
-    productsStore 
+    productsStore
     }}>
         {children}
     </StoresContext.Provider>

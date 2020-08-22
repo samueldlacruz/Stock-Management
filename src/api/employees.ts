@@ -37,6 +37,6 @@ export const deleteEmployee = async (id: number | undefined) => {
 export const updateEmployee = async (employee: EmployeeModal) => {
   const employeeUrl = `${baseUrl}/${employee.id}`;
 
-  const updatedemployee = await Axios.put<EmployeeModal>(employeeUrl, employee, { headers });
-  return updatedemployee.data;
+  const updatedEmployee = await Axios.put<EmployeeModal>(employeeUrl, employee, { headers });
+  return updatedEmployee.data;
 }

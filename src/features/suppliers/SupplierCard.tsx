@@ -68,8 +68,8 @@ const SupplierCard: React.FC<SupplierModel> = (props: SupplierModel) => {
         <SupplierEdit open={openEdit} handleClose={handleCloseEdit} data={props}/>
         <AlertDialog 
         open={open}
-        title="delete supplier"
-        description={`supplier ${props.name} delete`}
+        title="Eliminar Suplidor"
+        description={`Eliminar Suplidor ${props.name}`}
         onClose={handleClose}
         onAction={handleDelete}/>
         </Paper> 

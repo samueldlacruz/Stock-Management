@@ -23,7 +23,7 @@ const EmployeesList = () => {
        }
 
         return (
-        <ListContainer title="employees">
+        <ListContainer title="empleados">
         {employees.map((employee, index: number) => (
             <EmployeeCard 
             key={`id-${index}`} 

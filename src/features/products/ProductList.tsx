@@ -23,7 +23,7 @@ const ProductList = () => {
        }
        
        return (
-        <ListContainer title="products">
+        <ListContainer title="productos">
         {products.map((product: ProductModel, index: number) => (
             <ProductCard 
             key={`id-${index}`} 

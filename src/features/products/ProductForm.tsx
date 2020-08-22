@@ -30,7 +30,7 @@ const ProductEntrySchema = yup.object().shape({
   .test('fileSize', 'el archivo es muy pesado', (value) => {
     return value && value[0].size <= 2000000;
   })
- });
+});
 
 const ProductForm: React.FC = () => {
     const classes = useStyles();
@@ -76,7 +76,7 @@ const ProductForm: React.FC = () => {
        alignItems="center">
         <Paper className={classes.paper} variant="outlined">
             <Typography variant="subtitle1" gutterBottom>
-                create product
+                Crear Productos
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
             <Grid container className={classes.root} spacing={2}>
@@ -88,7 +88,7 @@ const ProductForm: React.FC = () => {
                     inputRef={register}
                     id="sku"
                     name="sku"
-                    label="SKU product"
+                    label="Codigo de barras"
                     variant="outlined"
                     size="small"
                     fullWidth
@@ -99,7 +99,7 @@ const ProductForm: React.FC = () => {
                     inputRef={register}
                     id="name"
                     name="name"
-                    label="name"
+                    label="nombre"
                     variant="outlined"
                     size="small"
                     fullWidth
@@ -111,7 +111,7 @@ const ProductForm: React.FC = () => {
                     inputRef={register}
                     id="description"
                     name="description"
-                    label="description"
+                    label="descripcion"
                     variant="outlined"
                     size="small"
                     error={ errors.description ? true : false }
@@ -122,7 +122,7 @@ const ProductForm: React.FC = () => {
                   as={
                     <TextField variant="outlined" select size="small">
                        <MenuItem value="default">
-                         Select category
+                         Categoria
                         </MenuItem>
                      {categories.map((category) => (
                         <MenuItem key={category.id} value={category.id}>
@@ -141,7 +141,7 @@ const ProductForm: React.FC = () => {
                     inputRef={register}
                     id="units"
                     name="units"
-                    label="units"
+                    label="unidades"
                     variant="outlined"
                     type="number"
                     size="small"
@@ -153,7 +153,7 @@ const ProductForm: React.FC = () => {
                     inputRef={register}
                     id="sellingPrice"
                     name="sellingPrice"
-                    label="Selling Price"
+                    label="Precio de Venta"
                     variant="outlined"
                     type="number"
                     size="small"
@@ -165,7 +165,7 @@ const ProductForm: React.FC = () => {
                     inputRef={register}
                     id="quantity"
                     name="quantity"
-                    label="Quantity"
+                    label="cantidad"
                     variant="outlined"
                     type="number"
                     size="small"
@@ -174,7 +174,7 @@ const ProductForm: React.FC = () => {
                   </Grid>
                 <Grid item xs={12}>
                     <Button type="submit" variant="contained" fullWidth color="primary">
-                      CREATE PRODUCT
+                      CREAR PRODUCTO
                     </Button>                    
                 </Grid>
             </Grid>

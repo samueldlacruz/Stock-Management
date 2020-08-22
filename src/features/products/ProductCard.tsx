@@ -19,12 +19,14 @@ import { useStores } from '../../store/StoresProvider';
 import  useStyles from './productCard.styles';
 import AlertDialog from '../../components/AlertDialog';
 import { getCategoryNameById } from '../../api/categories';
+import ProductEdit from './ProductEdit';
 
 const ProductCard: React.FC<ProductModel> = (props: ProductModel) => {
     const classes = useStyles();
   
     const [category, setCategory] = useState('');
     const [openDialogDelete, setOpenDialogDelete] = React.useState(false);
+    const [openEdit, setOpenEdit] = React.useState<boolean>(false);
 
     const { productsStore: { removeProduct } } = useStores();
 
@@ -32,6 +34,14 @@ const ProductCard: React.FC<ProductModel> = (props: ProductModel) => {
         const name = await getCategoryNameById(props.categoryId);
         await setCategory(name);
     }
+
+    const handleClickOpenEdit = () => {
+      setOpenEdit(true);
+    };
+   
+    const handleCloseEdit = () => {
+     setOpenEdit(false);
+    };
 
     useEffect(() => {
        getCategory();
@@ -84,7 +94,7 @@ const ProductCard: React.FC<ProductModel> = (props: ProductModel) => {
                   className={classes.block}
                   color="textPrimary"
                 >
-                <strong>units:</strong> {props.units}
+                <strong>unidades:</strong> {props.units}
                 </Typography>
 
                 <Typography
@@ -93,14 +103,14 @@ const ProductCard: React.FC<ProductModel> = (props: ProductModel) => {
                   className={classes.block}
                   color="textPrimary"
                 >
-                <strong>price: </strong> {props.sellingPrice}
-                <strong> quantity:</strong> {props.quantity}
+                <strong>precio: </strong> {props.sellingPrice}
+                <strong>cantidad:</strong> {props.quantity}
                 </Typography>
               </React.Fragment>
             }
             />
             <ListItemSecondaryAction>
-            <IconButton edge="end" className={classes.updateIcon} aria-label="edit ">
+            <IconButton edge="end" onClick={handleClickOpenEdit} className={classes.updateIcon} aria-label="edit ">
                 <EditOutlined />
             </IconButton>
             <IconButton edge="end" onClick={handleClickOpenDelete} className={classes.deleteIcon} aria-label="delete">
@@ -108,10 +118,11 @@ const ProductCard: React.FC<ProductModel> = (props: ProductModel) => {
             </IconButton>
             </ListItemSecondaryAction>
         </ListItem>
+        <ProductEdit open={openEdit} handleClose={handleCloseEdit} data={props}/>
         <AlertDialog 
          open={openDialogDelete}
-         title="delete product"
-         description={`product ${props.name} delete`}
+         title="Eliminar Producto"
+         description={`Desea eliminar el producto ${props.name}`}
          onClose={handleCloseDelete}
          onAction={handleDelete}
         />

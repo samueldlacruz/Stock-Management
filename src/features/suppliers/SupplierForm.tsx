@@ -58,7 +58,7 @@ const SupplierForm: React.FC = () => {
        alignItems="center">
         <Paper className={classes.paper} variant="outlined">
             <Typography variant="subtitle1" gutterBottom>
-                create supplier
+                Crear Suplidor
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
              <Grid container className={classes.root} spacing={2}>
@@ -67,7 +67,7 @@ const SupplierForm: React.FC = () => {
                     inputRef={register}
                     id="name"
                     name="name"
-                    label="name"
+                    label="nombre"
                     variant="outlined"
                     size="small"
                     fullWidth
@@ -78,8 +78,8 @@ const SupplierForm: React.FC = () => {
                     <TextField
                     inputRef={register}
                     id="phone"
-                    name="phone"
-                    label="phone"
+                    name="telefono"
+                    label="telefono"
                     type="number"
                     variant="outlined"
                     size="small"
@@ -100,7 +100,7 @@ const SupplierForm: React.FC = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Button type="submit" variant="contained" fullWidth color="primary">
-                      CREATE SUPPLIER
+                      CREAR SUPLIDOR
                     </Button>                    
                 </Grid>
               </Grid>

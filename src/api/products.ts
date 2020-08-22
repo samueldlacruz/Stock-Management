@@ -37,6 +37,19 @@ export const postProduct = async (product: NewProductModel) => {
 
 }
 
+export const getProductByFilter = async (categoryId?: number, query?: string): Promise<ProductModel[]> => {
+  let productsUrl = `${baseUrl}?category_id=${categoryId}`;
+
+  if (typeof query === 'string') {
+    productsUrl = `${baseUrl}?category_id=${categoryId}&search=${query}`;
+    const response = await Axios.get<ProductModel[]>(productsUrl);
+    return response.data;
+  }
+  
+  const response = await Axios.get<ProductModel[]>(productsUrl);
+  return response.data;
+}
+
 export const updateProduct = async (product: ProductModel) => {
   const productUrl = `${baseUrl}/${product.sku}`;
 

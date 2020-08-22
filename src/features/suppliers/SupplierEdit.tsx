@@ -43,8 +43,8 @@ const SupplierEdit: React.FC<SupplierEditProps> = (props) => {
     return (
         <EditModal
          open={props.open}
-         title="supplier edit"
-         description={`edit supplier ${props.data.name}- ${props.data.id}`}
+         title="Editar Suplidor"
+         description={`Editar Suplidor ${props.data.name}- ${props.data.id}`}
          onClose={props.handleClose}
          onAction={handleSubmit(onSubmit)}
         >
@@ -55,7 +55,7 @@ const SupplierEdit: React.FC<SupplierEditProps> = (props) => {
                     inputRef={register}
                     id="name"
                     name="name"
-                    label="name"
+                    label="nombre"
                     variant="outlined"
                     size="small"
                     defaultValue={props.data.name}
@@ -68,7 +68,7 @@ const SupplierEdit: React.FC<SupplierEditProps> = (props) => {
                     inputRef={register}
                     id="phone"
                     name="phone"
-                    label="phone"
+                    label="telefono"
                     type="number"
                     variant="outlined"
                     size="small"

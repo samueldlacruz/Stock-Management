@@ -44,8 +44,8 @@ const EmployeeEdit: React.FC<EmployeeEditProps> = (props) => {
     return (
         <EditModal
          open={props.open}
-         title="employee edit"
-         description={`edit employee ${props.data.name}- ${props.data.id}`}
+         title="Editar Empleados"
+         description={`Editar empleados ${props.data.name}- ${props.data.id}`}
          onClose={props.handleClose}
          onAction={handleSubmit(onSubmit)}
         >
@@ -56,7 +56,7 @@ const EmployeeEdit: React.FC<EmployeeEditProps> = (props) => {
                 inputRef={register}
                 id="name"
                 name="name"
-                label="name"
+                label="nombre"
                 variant="outlined"
                 size="small"
                 defaultValue={props.data.name}
@@ -68,7 +68,7 @@ const EmployeeEdit: React.FC<EmployeeEditProps> = (props) => {
                 inputRef={register}
                 id="lastname"
                 name="lastname"
-                label="lastname"
+                label="apellido"
                 variant="outlined"
                 size="small"
                 defaultValue={props.data.lastname}
@@ -81,7 +81,7 @@ const EmployeeEdit: React.FC<EmployeeEditProps> = (props) => {
                 type="number"
                 id="phone"
                 name="phone"
-                label="phone"
+                label="telefono"
                 variant="outlined"
                 size="small"
                 defaultValue={props.data.phone}

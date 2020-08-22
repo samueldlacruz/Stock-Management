@@ -12,14 +12,15 @@ const InputUploadImage: React.FC<InputUploadImageProps> = (props) => {
 
     const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const reader = new FileReader();
+        
         if (e.target.files) {
         const file = e.target.files[0];
 
-        reader.onloadend = () => {
+         reader.onloadend = () => {
           setFileState(reader.result);
-        };
+         };
 
-        reader.readAsDataURL(file);   
+         reader.readAsDataURL(file);   
         }
 
     };
@@ -30,7 +31,7 @@ const InputUploadImage: React.FC<InputUploadImageProps> = (props) => {
      flexDirection="column"
      justifyContent="center"
      alignItems="center">
-    {fileState ?  <img alt="photo product" src={`${fileState}`} /> : ''}
+    {fileState ?  <img alt="photo product" style={{borderRadius: '50%'}} width="150" height="150" src={`${fileState}`} /> : ''}
     <label htmlFor="image">
         <input
          style={{ display: 'none' }}

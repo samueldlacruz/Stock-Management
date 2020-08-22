@@ -42,8 +42,8 @@ const CategoryEdit: React.FC<CategoryEditProps> = (props) => {
     return (
         <EditModal
          open={props.open}
-         title="category edit"
-         description={`edit category ${props.data.name}- ${props.data.id}`}
+         title="Editar categoria"
+         description={`editar la categoria ${props.data.name}- ${props.data.id}`}
          onClose={props.handleClose}
          onAction={handleSubmit(onSubmit)}
         >
@@ -54,7 +54,7 @@ const CategoryEdit: React.FC<CategoryEditProps> = (props) => {
                 inputRef={register}
                 id="name"
                 name="name"
-                label="name"
+                label="nombre"
                 defaultValue={props.data.name}
                 variant="outlined"
                 size="small"
@@ -66,7 +66,7 @@ const CategoryEdit: React.FC<CategoryEditProps> = (props) => {
                 inputRef={register}
                 id="description"
                 name="description"
-                label="description"
+                label="descripcion"
                 defaultValue={props.data.description}
                 variant="outlined"
                 size="small"

@@ -14,7 +14,7 @@ const SupplierPage: React.FC<{}> = () => {
       <Container component="main" maxWidth="md" className={classes.container}>
        <CssBaseline />
         <Typography className={classes.Typography} align="center" variant="h4" gutterBottom>
-         <SupplierIcon fontSize="large" className={classes.titleIcon}/>  Supplier 
+         <SupplierIcon fontSize="large" className={classes.titleIcon}/>  Suplidores
         </Typography> 
         <SupplierForm></SupplierForm>
         <SuppliersList></SuppliersList>

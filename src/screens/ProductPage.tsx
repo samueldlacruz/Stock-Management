@@ -14,7 +14,7 @@ const CategoryPage: React.FC<{}> = () => {
         <Container component="main" maxWidth="md" className={classes.container}>
          <CssBaseline />
           <Typography className={classes.Typography} align="center" variant="h4" gutterBottom>
-           <ShoppingCartIcon fontSize="large" className={classes.titleIcon}/>  Products 
+           <ShoppingCartIcon fontSize="large" className={classes.titleIcon}/>  Productos
           </Typography> 
           <ProductForm />
           <ProductList />

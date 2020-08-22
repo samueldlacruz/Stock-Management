@@ -68,8 +68,8 @@ const EmployeeCard: React.FC<EmployeeModal> = (props: EmployeeModal) => {
         <EmployeeEdit open={openEdit} handleClose={handleCloseEdit} data={props}/>
         <AlertDialog 
         open={open}
-        title="delete employee"
-        description={`employee ${props.name} delete`}
+        title="Eliminar Empleado"
+        description={`Desea eliminar el empleado ${props.name}`}
         onClose={handleClose}
         onAction={handleDelete}/>
         </Paper> 

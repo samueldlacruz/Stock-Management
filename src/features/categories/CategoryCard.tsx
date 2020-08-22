@@ -75,8 +75,8 @@ const CategoryCard: React.FC<CategoryModel> = (props: CategoryModel) => {
         <CategoryEdit open={openEdit} handleClose={handleCloseEdit} data={props}/>
         <AlertDialog 
         open={open}
-        title="delete category"
-        description={`category ${props.name} delete`}
+        title="Eliminar categoria"
+        description={`desea eliminar la categoria ${props.name}`}
         onClose={handleClose}
         onAction={handleDelete}/>
         </Paper> 

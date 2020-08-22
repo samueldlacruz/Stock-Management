@@ -14,7 +14,7 @@ const EmployeePage: React.FC<{}> = () => {
         <Container component="main" maxWidth="md" className={classes.container}>
          <CssBaseline />
           <Typography className={classes.Typography} align="center" variant="h4" gutterBottom>
-           <UserIcon fontSize="large" className={classes.titleIcon}/>  Employees 
+           <UserIcon fontSize="large" className={classes.titleIcon}/>  Empleados
           </Typography> 
           <EmployeeForm />
           <EmployeesList/>

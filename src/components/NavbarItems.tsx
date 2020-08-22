@@ -8,6 +8,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LabelIcon from '@material-ui/icons/Label';
 import StoreIcon from '@material-ui/icons/Store';
 import UserIcon from '@material-ui/icons/People';
+import OrdersIcon from '@material-ui/icons/Receipt';
 import { Link } from 'react-router-dom';
 import { ItemLinkModal } from './ItemLinkModel';
 
@@ -18,10 +19,11 @@ const linkStyles = {
 
 const links: ItemLinkModal[] = [
   {path: '/', name:'Dashboard', icon: <DashboardIcon /> },
-  {path: '/product', name:'Product', icon: <ShoppingCartIcon /> },
-  {path: '/category', name:'Category', icon: <LabelIcon/>},
-  {path: '/supplier', name: 'Supplier', icon: <StoreIcon /> },
-  {path: '/employee', name: 'Employees', icon: <UserIcon />}
+  {path: '/product', name:'Productos', icon: <ShoppingCartIcon /> },
+  {path: '/category', name:'Categorias', icon: <LabelIcon/>},
+  {path: '/supplier', name: 'Suplidores', icon: <StoreIcon /> },
+  {path: '/employee', name: 'Empleados', icon: <UserIcon />},
+  {path: '/orders', name: 'ordenes', icon: <OrdersIcon />}
 ];
 
 export const mainListItems = (

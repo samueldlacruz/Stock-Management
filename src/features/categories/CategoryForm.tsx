@@ -57,7 +57,7 @@ const CategoryForm: React.FC = () => {
        alignItems="center">
         <Paper className={classes.paper} variant="outlined">
             <Typography variant="subtitle1" gutterBottom>
-                create category
+                Crear categorias
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
              <Grid container className={classes.root} spacing={2}>
@@ -66,7 +66,7 @@ const CategoryForm: React.FC = () => {
                     inputRef={register}
                     id="name"
                     name="name"
-                    label="name"
+                    label="nombre"
                     variant="outlined"
                     size="small"
                     error={ errors.name ? true : false }
@@ -77,7 +77,7 @@ const CategoryForm: React.FC = () => {
                     inputRef={register}
                     id="description"
                     name="description"
-                    label="description"
+                    label="descripcion"
                     variant="outlined"
                     size="small"
                     error={ errors.description ? true : false }
@@ -85,7 +85,7 @@ const CategoryForm: React.FC = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Button type="submit" variant="contained" fullWidth color="primary">
-                      CREATE CATEGORY
+                      CREAR CATEGORIA
                     </Button>                    
                 </Grid>
               </Grid>

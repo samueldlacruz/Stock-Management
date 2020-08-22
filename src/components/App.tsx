@@ -8,6 +8,7 @@ import CategoryPage from '../screens/CategoryPage';
 import SupplierPage from '../screens/SupplierPage';
 import ProductPage from '../screens/ProductPage';
 import EmployeePage from '../screens/EmployeePage';
+import DashboardPage from '../screens/DashboardPage';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,6 +42,7 @@ const App: React.FC = () => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Switch>
+            <Route path="/" exact component={DashboardPage}/>
             <Route path="/product" component={ProductPage}/>
             <Route path="/category" component={CategoryPage}/>
             <Route path="/supplier" component={SupplierPage}/>

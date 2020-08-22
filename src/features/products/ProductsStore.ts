@@ -1,6 +1,6 @@
 import { observable, action, runInAction } from 'mobx';
 import { ProductModel, NewProductModel } from './Product.types';
-import { getProducts, postProduct, deleteProduct, updateProduct } from '../../api/products';
+import { getProducts, postProduct, deleteProduct, updateProduct, getProductByFilter } from '../../api/products';
 
 export class ProductsStore {
   @observable products: ProductModel[] = []
@@ -32,6 +32,16 @@ export class ProductsStore {
      this.products = this.products.map(item => item.sku === updatedProduct.sku ? updatedProduct : item);
      this.fetchProducts();
    })
+  }
+
+  @action
+  filterProducts = async (categoryId?: number, search?: string) => {
+    const productFilter = await getProductByFilter(categoryId, search);
+   
+    runInAction(() => {
+      this.products = productFilter;
+      this.fetchProducts();
+    })
   }
 
   @action

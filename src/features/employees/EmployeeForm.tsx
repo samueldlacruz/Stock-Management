@@ -59,7 +59,7 @@ const EmployeeForm: React.FC = () => {
        alignItems="center">
         <Paper className={classes.paper} variant="outlined">
             <Typography variant="subtitle1" gutterBottom>
-                create employee
+                Crear Empleado
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off">
              <Grid container className={classes.root} spacing={2}>
@@ -111,7 +111,7 @@ const EmployeeForm: React.FC = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Button type="submit" variant="contained" fullWidth color="primary">
-                      CREATE EMPLOYEE
+                      CREAR EMPLEADO
                     </Button>                    
                 </Grid>
               </Grid>

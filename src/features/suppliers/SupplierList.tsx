@@ -24,7 +24,7 @@ const SuppliersList = () => {
      }
      
     return (
-     <ListContainer title="suppliers">
+     <ListContainer title="suplidores">
       {suppliers.map((supplier: SupplierModel, index: number) => (
         <SupplierCard 
         key={`id-${index}`}
