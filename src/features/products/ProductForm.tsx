@@ -20,12 +20,12 @@ import { CategoryModel } from '../../features/categories/CategoryModel';
 
 const ProductEntrySchema = yup.object().shape({
   sku: yup.string().required('this is required'),
-  categoryId: yup.number().required('this is required'),
+  categoryId: yup.number().min(0).required('this is required'),
   name: yup.string().required('this is required'),
   description: yup.string().max(55).required('this is required'),
-  units: yup.number().required('this is required'),
-  quantity: yup.number().required('this is required'),
-  sellingPrice: yup.number().required('this is required'),
+  units: yup.number().min(0).required('this is required'),
+  quantity: yup.number().min(0).required('this is required'),
+  sellingPrice: yup.number().min(0).required('this is required'),
   image: yup.mixed().required('necesita poner una foto')
   .test('fileSize', 'el archivo es muy pesado', (value) => {
     return value && value[0].size <= 2000000;
