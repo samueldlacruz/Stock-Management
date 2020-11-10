@@ -1,5 +1,5 @@
-Stock Management System
-___
+# Stock Management System
+
 > simple stock management system for small company
 
 Created with: 
